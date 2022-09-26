@@ -21,3 +21,8 @@
 
 5
     npm install -g heroku
+
+6 
+    GIT: https://github.com/onitseDv/NodeJS---atv1-PUC
+    HEROKU: https://dashboard.heroku.com/apps/appnode1-vitorlopes
+            https://appnode1-vitorlopes.herokuapp.com/
