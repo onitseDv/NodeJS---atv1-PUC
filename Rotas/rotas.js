@@ -67,7 +67,10 @@ rotas.post('/produtos/adicionarProduto', (requisicao, resposta) => {
     }
 });
  
-//ta com erro no PUTTTTTTTTTTTTTTTTTTTTTTTT 
+const findItem = id => {
+    return itemProduto.find(item => item.id == id);
+};
+
 //teste: http://localhost:3000/produtos/alteraProduto/id-aqui  
 rotas.put('/produtos/alteraProduto/:id', (requisicao, resposta) => {
     const body = requisicao.body
@@ -80,39 +83,23 @@ rotas.put('/produtos/alteraProduto/:id', (requisicao, resposta) => {
     }else if(!body.marca){
         return resposta.status(400).end('Marca do produto não pode ser nula!')
     }else{
-        //verificar se o produto existe para alterar
-        const result = itemProduto.find( idProd => idProd.id === requisicao.params.id)
-        if(!result){
-            return resposta.status(400).end(`Produto com id ${requisicao.params.id} não encontrado`)
-        }else{
-            //itemProduto[requisicao.params.id - 1].id = requisicao.body.id;
-            itemProduto[requisicao.params.id - 1].descricao = requisicao.body.descricao;
-            itemProduto[requisicao.params.id - 1].valor = requisicao.body.valor;
-            itemProduto[requisicao.params.id - 1].marca = requisicao.body.marca;
-            return resposta.json(itemProduto[requisicao.params.id - 1]);
-        }
+        //itemProduto[requisicao.params.id - 1].id = requisicao.body.id;
+        itemProduto[requisicao.params.id - 1].descricao = requisicao.body.descricao;
+        itemProduto[requisicao.params.id - 1].valor = requisicao.body.valor;
+        itemProduto[requisicao.params.id - 1].marca = requisicao.body.marca;
+        return resposta.json(itemProduto[requisicao.params.id - 1]);
     }
 })
 
-
-//teste: http://localhost:3000/produtos/id-aqui 
-rotas.delete('/produtos/deleta/:id', (requisicao, resposta) =>{
+//teste: http://localhost:3000/produtos/deleta/id-aqui 
+rotas.delete('/produtos/deleta/:id', (requisicao, resposta) => {
     const identificador = requisicao.params.id
-    let newItem = itemProduto.filter(item => {
-        if(!item[identificador]){
-            return (item)
-        }
-    })
-    itemProduto = newItem
-    return resposta.send(newItem)
-    
-    /*
-    itemProduto = itemProduto.filter(itemProduto => {
-        if(itemProduto.id !== id){
+    let newitemProduto = itemProduto.filter(itemProduto => {
+        if(itemProduto.id !== identificador){
             return true
        }
        return false
     })
-    resposta.send(`Produto com id ${id} excluído!`)
-    */
-}); 
+    delete itemProduto[identificador - 1]
+    resposta.send(`Produto com id ${identificador} excluído!`) 
+})
