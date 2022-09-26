@@ -20,4 +20,4 @@
         $ npm start
 
 5
-    
+    npm install -g heroku

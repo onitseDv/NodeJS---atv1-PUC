@@ -67,7 +67,7 @@ rotas.post('/produtos/adicionarProduto', (requisicao, resposta) => {
     }
 });
  
-//ta com erro no PUTTTTTTTTTTTTTTTTTTTTTTTT
+//ta com erro no PUTTTTTTTTTTTTTTTTTTTTTTTT 
 //teste: http://localhost:3000/produtos/alteraProduto/id-aqui  
 rotas.put('/produtos/alteraProduto/:id', (requisicao, resposta) => {
     const body = requisicao.body
@@ -95,25 +95,24 @@ rotas.put('/produtos/alteraProduto/:id', (requisicao, resposta) => {
 })
 
 
-/*rotas.delete('/times/delete/:id', (requisicao, resposta) =>{
+//teste: http://localhost:3000/produtos/id-aqui 
+rotas.delete('/produtos/deleta/:id', (requisicao, resposta) =>{
     const identificador = requisicao.params.id
-    let newItem = itemTime.filter(item => {
+    let newItem = itemProduto.filter(item => {
         if(!item[identificador]){
             return (item)
         }
     })
-    itemTime = newItem
+    itemProduto = newItem
     return resposta.send(newItem)
     
-    
-    /*itemTime = itemTime.filter(itemTime => {
-        if(itemTime.id !== id){
+    /*
+    itemProduto = itemProduto.filter(itemProduto => {
+        if(itemProduto.id !== id){
             return true
        }
        return false
     })
-    resposta.send(`Time com id ${id} excluído!`)
-    
-}); */
-
-
+    resposta.send(`Produto com id ${id} excluído!`)
+    */
+}); 
